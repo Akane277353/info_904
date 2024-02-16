@@ -1,6 +1,7 @@
 # Load model directly
 import torch
 from flask import Flask
+from flask_cors import CORS
 from IPython.display import Audio
 from transformers import (AutoModelForTextToSpectrogram, AutoProcessor,
                           SpeechT5HifiGan)
@@ -33,7 +34,9 @@ def getAudio(text):
 
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route("/<text>")
+@app.route("/<text>", methods=['GET'])
 def audio(text):
+    
     return getAudio(text)
