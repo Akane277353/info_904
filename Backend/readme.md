@@ -3,5 +3,5 @@
 ## run
 
 ```bash
-flask --app TTS_Backend run
+python3 TTS_Backend.py
 ```
