@@ -15,14 +15,6 @@ speaker_embeddings = torch.zeros(1, 512)  # use the same speaker embedding for a
 
 speaker_embeddings = torch.randn(1, 512)  # use the same speaker embedding for all inputs
 
-inputs = processor(text="Kon'nichiwa, koreha tesutodesu", return_tensors="pt")
-
-speech = model.generate(inputs["input_ids"], speaker_embeddings=speaker_embeddings, vocoder=vocoder)
-speech.shape
-
-speech = speech.squeeze().numpy()
-
-my_audio = Audio(speech, rate=16000)
 
 def getAudio(text):
     inputs = processor(text=text, return_tensors="pt")
