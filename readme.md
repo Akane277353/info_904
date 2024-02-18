@@ -5,6 +5,6 @@ Rakotoanosy Ewan
 Cosson Méwen
 Guigue Billon Arnaud
 
-## Deploiment
+## Déploiement
 
 http://141.145.207.6:3000
