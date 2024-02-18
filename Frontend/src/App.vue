@@ -6,7 +6,7 @@ const text = ref("");
 
 const getTTS = () => {
   axios
-    .get("http://127.0.0.1:5000/" + text.value)
+    .get(import.meta.env.VITE_API + text.value)
     .then((res) => {
       var match = res.data.match(/src="([^"]+)"/);
 

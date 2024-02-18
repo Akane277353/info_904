@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install
 COPY . .
-RUN npm run build
+RUN npm run build:prod
 
 FROM nginx:1.21.3-alpine as prod
 COPY --from=tts-frontend /app/dist /usr/share/nginx/html
