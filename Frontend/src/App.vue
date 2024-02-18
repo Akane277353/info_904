@@ -1,11 +1,14 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import spinner from "./assets/spinner.gif";
 
 const text = ref("");
+const isLoading = ref(0);
 
-const getTTS = () => {
-  axios
+const getTTS = async () => {
+  isLoading.value++;
+  await axios
     .get(import.meta.env.VITE_API + text.value)
     .then((res) => {
       var match = res.data.match(/src="([^"]+)"/);
@@ -21,6 +24,7 @@ const getTTS = () => {
     .catch((err) => {
       console.log(err);
     });
+  isLoading.value--;
 };
 </script>
 
@@ -30,7 +34,8 @@ const getTTS = () => {
     <h3>INFO 904</h3>
     <p>Entrez le texte que vous souhaitez lire :</p>
     <textarea type="text" v-model="text" />
-    <button @click="getTTS">Lire le TTS</button>
+    <img v-if="isLoading" :src="spinner" alt="Loading..." height="50" />
+    <button v-else @click="getTTS">Lire le TTS</button>
   </div>
   <footer>
     <p>Cosson Méwen, Jonathan Dumont, Rakotoanosy Ewan, Guigue Billon Arnaud</p>
